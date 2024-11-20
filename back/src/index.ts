@@ -1,3 +1,6 @@
 import server from "./server";
 import { PORT } from "./config/envs";
+
+
 server.listen(PORT, () => console.info(`Server up and running on port ${PORT}`));
+
