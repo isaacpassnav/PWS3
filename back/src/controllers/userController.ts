@@ -1,4 +1,5 @@
 import { Response, Request } from "express"
+import { getAllUserServices, getUserByIdService, registerUserService } from "../services/userService";
 export const getAllUsers = async (req: Request, res:Response) =>{
     try {
         res.status(201).json({
