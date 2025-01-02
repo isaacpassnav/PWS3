@@ -17,29 +17,22 @@ export const createCredentialsService = async (credentialsDTO: ICredentialsDTO):
         };
         credentials.push(newCredential);
         return newCredential.id
-        
     } catch (err) {
         throw new Error(`Error al crear credenciales: ${err}`)
     }
 };
-
-
 export const validateCredentials = async (credentialsDTO: ICredentialsDTO):Promise<number> =>{
     
     try {
         const foundCredential: ICredentials | undefined = credentials.find((credential) =>credential.username == credentialsDTO.username);
 
         if (!foundCredential) throw new Error("Usuario no encontrado");
-
         const passwordValid = await bcrypt.compare(credentialsDTO.password, foundCredential.password);
 
-        // if (foundCredential.password == credentialsDTO.password) throw new Error("Contraseña incontrada");
         if(!passwordValid) throw new Error("Contraseña incorrecta")
-
         return foundCredential.id;
 
     } catch (err) {
         throw new Error(`Erro al validar credenciales: ${err}`);
-    };
-       
+    };     
 };

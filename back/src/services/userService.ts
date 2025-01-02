@@ -9,18 +9,20 @@ export const getAllUserServices = async(): Promise<IUser[]> =>{
     const allUsers = users;
     return allUsers;
 }
-// Obtener un usuario por ID
 export const getUserByIdService = async(id: number):Promise<IUser> =>{
     const foundUser: IUser | undefined = users.find ((user) => user.id == id)
     if (!foundUser) throw new Error(`El Usuario con el id ${id} no existe`) 
     return foundUser;
-    
 }
 
 export const registerUserService = async(createUserDTO: ICreateUSerDTO): Promise<IUser> =>{
     const newCredential: number = await createCredentialsService({
         username: createUserDTO.username,
         password: createUserDTO.password,
+    });
+    const credentailId:number = await createCredentialsService({
+        username:createUserDTO.username,
+        password:createUserDTO.password,
     });
     const newUser: IUser = {
         id: userId ++,
@@ -34,3 +36,10 @@ export const registerUserService = async(createUserDTO: ICreateUSerDTO): Promise
     return newUser;
 }
 // Login del usuaio
+export const loginUserService = async (username: string, password: string): Promise<IUser> =>{
+    const credentailId = await validateCredentials({username, password});
+
+    const foundUser = users.find((user)=> user.credentialsId === credentailId);
+    if(!foundUser) throw new Error("Usuario no encontrado")
+    return foundUser;
+};

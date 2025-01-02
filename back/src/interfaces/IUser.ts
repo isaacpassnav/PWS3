@@ -2,9 +2,8 @@ interface IUser{
     id: number,
     name: string,
     email: string,
-    birthday: string,
+    birthday: Date,
     nDni: number,
     credentialsId: number
 }
-
 export default IUser;

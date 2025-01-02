@@ -1,9 +1,8 @@
 interface IAppointment{
     id: number,
-    date: string,
-    time:   number,
+    date: Date,
+    time:   "HH:mm",
     userId: number,
-    satus: "Active" | "Cancelled"
+    status: "Active" | "Cancelled"
 }
-
 export default IAppointment;

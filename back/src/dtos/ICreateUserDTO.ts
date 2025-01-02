@@ -1,7 +1,7 @@
 interface ICreateUSerDTO{
     name: string,
     email: string,
-    birthday: string,
+    birthday: Date,
     nDni: number,
     username: string,
     password: string
